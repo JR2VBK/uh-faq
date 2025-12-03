@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UH入居者専用 FAQ & Q&A</title>
+    <style>
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* ヘッダー周り */
+        header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #0056b3; }
+        h1 { color: #0056b3; margin-bottom: 10px; }
+        .description { color: #666; margin-bottom: 20px; }
+
+        /* 検索ボックス */
+        .search-box { width: 100%; margin-bottom: 30px; position: relative; }
+        .search-input { 
+            width: 100%; padding: 15px; font-size: 1.1em; border: 2px solid #ddd; border-radius: 8px; box-sizing: border-box; 
+            transition: border-color 0.3s;
+        }
+        .search-input:focus { border-color: #0056b3; outline: none; }
+
+        /* 質問投稿エリア */
+        .ask-section { text-align: center; margin-bottom: 40px; background: #e8f4ff; padding: 20px; border-radius: 8px; }
+        .btn-ask { 
+            display: inline-block; background-color: #0056b3; color: white; padding: 10px 25px; 
+            text-decoration: none; border-radius: 30px; font-weight: bold; margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn-ask:hover { background-color: #003d80; }
+
+        /* FAQリスト（アコーディオン） */
+        .faq-item { background: white; border-radius: 8px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); overflow: hidden; }
+        
+        .faq-question { 
+            padding: 20px; cursor: pointer; position: relative; font-weight: bold; color: #444;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-question:hover { background-color: #f9f9f9; }
+        
+        /* 矢印アイコン */
+        .faq-question::after {
+            content: '+'; font-size: 1.5em; color: #0056b3; transition: transform 0.3s;
+        }
+        .faq-item.active .faq-question::after {
+            content: '−'; transform: rotate(180deg);
+        }
+        .faq-item.active .faq-question { color: #0056b3; }
+
+        /* 回答エリア */
+        .faq-answer { 
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; 
+            background-color: #fafafa; border-top: 1px solid #eee;
+        }
+        .faq-answer-content { padding: 20px; color: #555; }
+
+        /* カテゴリタグ */
+        .tag { display: inline-block; font-size: 0.75em; padding: 2px 8px; border-radius: 4px; color: white; margin-right: 10px; vertical-align: middle; }
+        .tag-rule { background-color: #e74c3c; } /* ルール */
+        .tag-facility { background-color: #27ae60; } /* 設備 */
+        .tag-life { background-color: #f39c12; } /* 生活 */
+        
+        /* フッター */
+        .footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #aaa; }
+        .back-link { display: inline-block; margin-top: 20px; color: #0056b3; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>UH三条Ⅲ FAQ</h1>
+        <p class="description">よくある質問と生活の知恵をまとめています。<br>困ったときはまずここで検索！</p>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="search-input" class="search-input" placeholder="キーワードで検索（例：ゴミ、鍵、騒音...）">
+    </div>
+
+    <div class="ask-section">
+        <h3>知りたいことが見つかりませんか？</h3>
+        <p>他の入居者やアドバイザーに質問してみましょう。</p>
+        <a href="#" class="btn-ask" onclick="alert('デモ：Googleフォーム等の質問受付ページへ移動します')">＋ 質問を投稿する</a>
+    </div>
+
+    <div id="faq-list">
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tag tag-life">生活</span>排水溝が詰まってしまいました。どうすればいいですか？</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    市販のパイプクリーナー（パイプユニッシュ等）を使用してみてください。<br>
+                    それでも解消しない場合は、管理室へ連絡してください。無理に棒などでつつくと配管を傷つける恐れがあります。<br>
+                    <strong>予防策：</strong>髪の毛取りシートなどを活用しましょう。
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tag tag-rule">ルール</span>ゴミ出しの分別ルールがよく分かりません。</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    仙台市のゴミ分別ルールに従います。UH三条IIIのゴミ捨て場には、分別表が貼ってありますので確認してください。<br>
+                    <a href="https://www.city.sendai.jp/haiki-shido/kurashi/machi/genryo/gomi/wakekata/index.html" target="_blank">仙台市ゴミ分別ガイド（外部リンク）</a>も便利です。<br>
+                    特に「プラスチック製容器包装」と「燃やせるゴミ」の混同に注意してください。
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tag tag-facility">設備</span>部屋の鍵をなくしてしまいました。</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    直ちに管理室（または警備室）へ連絡してください。<br>
+                    防犯上の理由から、シリンダー交換が必要になる場合があり、その際の費用は入居者負担となります。<br>
+                    ※夜間の場合は、緊急連絡先へ電話してください。
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tag tag-life">生活</span>隣の部屋や上階の騒音が気になります。</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    直接相手に注意しに行くとトラブルの原因になることがあります。<br>
+                    まずはUHアドバイザーまたは管理人に相談してください。<br>
+                    夜間（22時以降）は特に静かにするよう、生活ルールで定められています。
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span><span class="tag tag-facility">設備</span>インターネットが繋がりません。</span>
+            </div>
+            <div class="faq-answer">
+                <div class="faq-answer-content">
+                    まずは、部屋のLANポートとルーターの接続を確認し、ルーターの再起動を試してください。<br>
+                    UH全体の障害の可能性がある場合は、掲示板に情報が出ていないか確認してください。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        UH Sanjo III Advisor Project<br>
+        <a href="#" onclick="window.close(); return false;" class="back-link">閉じる / ポータルへ戻る</a>
+    </div>
+</div>
+
+<script>
+    // アコーディオンの開閉ロジック
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            // 他を閉じる（オプション：一つだけ開くようにする場合）
+            // faqItems.forEach(i => { if(i !== item) i.classList.remove('active'); i.querySelector('.faq-answer').style.maxHeight = null; });
+
+            item.classList.toggle('active');
+            const answer = item.querySelector('.faq-answer');
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = null;
+            }
+        });
+    });
+
+    // 検索フィルタリングロジック
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', (e) => {
+        const keyword = e.target.value.toLowerCase();
+        
+        faqItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(keyword)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

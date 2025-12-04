@@ -30,9 +30,9 @@
         .btn-ask:hover { background-color: #003d80; }
 
         /* FAQリスト */
-        .faq-item { border-bottom: 1px solid #eee; }
+        .faq-item { border-bottom: 1px solid #eee; margin-bottom: 10px; }
         .faq-question { 
-            padding: 20px 10px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 10px; cursor: pointer; font-weight: bold; display: flex; justify-content: space-between; align-items: center;
             transition: background 0.2s;
         }
         .faq-question:hover { background-color: #f9f9f9; }
@@ -45,6 +45,25 @@
             max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background-color: #fafafa; 
         }
         .faq-answer-content { padding: 20px; color: #555; border-top: 1px dashed #ddd; }
+
+        /* ユーザー情報（アイコンと名前） */
+        .user-meta { display: flex; align-items: center; font-size: 0.85em; color: #888; margin-bottom: 5px; }
+        .user-icon { 
+            width: 24px; height: 24px; border-radius: 50%; background-color: #ddd; color: #555;
+            display: inline-flex; align-items: center; justify-content: center; margin-right: 8px; font-size: 0.8em; font-weight: bold;
+        }
+        .user-role-admin { background-color: #ff9800; color: white; } /* アドバイザー色 */
+        .user-role-student { background-color: #2196f3; color: white; } /* 学生色 */
+
+        /* グッドボタン */
+        .like-btn {
+            display: inline-flex; align-items: center; margin-top: 15px; padding: 5px 12px;
+            border: 1px solid #ddd; border-radius: 20px; background: white; color: #666; font-size: 0.9em; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .like-btn:hover { background-color: #eef6ff; border-color: #0056b3; color: #0056b3; }
+        .like-btn.liked { background-color: #0056b3; border-color: #0056b3; color: white; }
+        .like-count { margin-left: 5px; font-weight: bold; }
 
         /* タグ */
         .tag { display: inline-block; font-size: 0.75em; padding: 2px 8px; border-radius: 4px; color: white; margin-right: 10px; vertical-align: middle; }
@@ -77,145 +96,218 @@
         
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>冷蔵庫の中の食材にいちいち名前を書くのが面倒くさい。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 工学部 1年・男性</div>
+                    <span><span class="tag tag-life">生活</span>冷蔵庫の中の食材にいちいち名前を書くのが面倒くさい。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    <strong>自分の名前と部屋番号を書いたビニール袋</strong>を用意し、<strong>その中に食材を入れる</strong>ようにすると、名前を書く手間が省けますよ！<br>
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> UHアドバイザー 伊藤</div>
+                    自分の名前と部屋番号を書いたビニール袋を用意し、その中に食材を入れるようにすると、名前を書く手間が省けますよ！<br>
                     共有冷蔵庫でのトラブルを防ぐためにも、食材が誰のものか明確にしておくことをおすすめします。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">15</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>冬場、三条から大学までの坂道が凍って怖いです。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 文学部 1年・女性</div>
+                    <span><span class="tag tag-life">生活</span>冬場、三条から大学までの坂道が凍って怖いです。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-student">A</span> 法学部 3年・先輩</div>
                     仙台の冬を甘く見てはいけません！<br>
                     ポケットに手を入れたまま歩くのは厳禁です。転んだ時に大怪我をします。<br>
                     靴底に貼る<strong>「滑り止め」</strong>がコンビニや生協で売っているので、本格的な雪が降る前に準備しておきましょう。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">28</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>1限に間に合う市バスに乗れません。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 教育学部 1年</div>
+                    <span><span class="tag tag-life">生活</span>1限に間に合う学バス（シャトルバス）に乗れません。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-student">A</span> 経済学部 2年</div>
                     8:30前後のバスは非常に混雑し、定員オーバーで乗れないこともあります。<br>
                     雨の日や冬場はさらに混むので、<strong>「あと1本早いバス」</strong>を目指して並ぶのが鉄則です。<br>
                     天気が良ければ、自転車や徒歩で川内キャンパスへ向かうのも良い運動になりますよ！
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">42</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>洗濯機がいつも使用中で使えません。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 留学生・男性</div>
+                    <span><span class="tag tag-life">生活</span>洗濯機がいつも使用中で使えません。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> UHアドバイザー</div>
                     夜20時〜24時は非常に混み合います。<br>
                     狙い目は<strong>「朝7時〜9時」</strong>です！早起きして洗濯を済ませると一日がスムーズですよ。<br>
                     ※洗濯が終わったら、次の人のためにすぐに取り出すのがUHのマナーです。スマホのタイマーを活用しましょう。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">9</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-rule">ルール</span>ユニットの仙台市指定ゴミ袋を使い切りました。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 農学部 2年</div>
+                    <span><span class="tag tag-rule">ルール</span>指定ゴミ袋を買い忘れました。近くで売っていますか？</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    月に一度、管理室から仙台市指定ゴミ袋が支給されます。<br>
-                    ユニットを清潔に保つためにも、<strong>「月に一度、支給品を受け取る」</strong>ことを習慣にしましょう。
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> 管理人さん</div>
+                    最寄りのコンビニ（ローソン等）で購入可能です。<br>
+                    ただ、深夜に買いに行くのは大変なので、<strong>「最後の一枚を使ったらすぐ買う」</strong>を習慣にしましょう。<br>
+                    入居者同士で「1枚貸して！」と助け合うこともありますが、基本は自己管理で！
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">5</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-facility">設備</span>冬場、窓の結露がすごいです。対策は？</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 1年・女性</div>
+                    <span><span class="tag tag-facility">設備</span>冬場、窓の結露がすごいです。対策は？</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> UHアドバイザー</div>
                     UHの建物は気密性が高いため、冬は結露しやすいです。<br>
                     放置すると<strong>カビの原因になり、退去時に清掃費がかかる</strong>ことがあります。<br>
                     毎朝ワイパーで拭き取るか、こまめに換気扇を回しましょう。「24時間換気」は絶対に切らないでください！
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">33</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>排水溝が詰まってしまいました。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 匿名</div>
+                    <span><span class="tag tag-life">生活</span>排水溝が詰まってしまいました。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> 管理人さん</div>
                     市販のパイプクリーナー（パイプユニッシュ等）を使用してください。それでも解消しない場合は管理室へ連絡を。棒でつつくと配管を傷つける恐れがあります。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">11</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-facility">設備</span>IHクッキングヒーターが反応しません。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 工学部 1年</div>
+                    <span><span class="tag tag-facility">設備</span>IHクッキングヒーターが反応しません。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-student">A</span> 理学部 3年</div>
                     お使いの鍋やフライパンはIH対応ですか？<br>
                     <strong>「磁石がくっつく底」</strong>のものでないと反応しません。100均などの磁石でチェックしてみてください。<br>
                     また、底が変形しているとエラーになることがあります。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">7</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-rule">ルール</span>ゴミ出しの分別ルールを教えてください。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 留学生</div>
+                    <span><span class="tag tag-rule">ルール</span>ゴミ出しの分別ルールを教えてください。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> UHアドバイザー</div>
                     UH三条IIIのゴミ捨て場の分別表に従ってください。特にプラスチックと燃えるゴミの混同に注意。<br>
-                    <a href="https://www.city.sendai.jp/haiki-shido/kurashi/machi/genryo/gomi/wakekata/documents/1_2025wakedashi_english.pdf" target="_blank">仙台市ゴミ分別ガイド</a>も参照してください。
+                    <a href="https://www.city.sendai.jp/haiki-shido/kurashi/machi/genryo/gomi/wakekata/index.html" target="_blank">仙台市ゴミ分別ガイド</a>も参照してください。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">2</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-facility">設備</span>部屋の鍵をなくしました。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 文学部 2年</div>
+                    <span><span class="tag tag-facility">設備</span>部屋の鍵をなくしました。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> 管理人さん</div>
                     直ちに管理室（または警備室）へ連絡してください。防犯上、シリンダー交換が必要になる場合があり、費用は入居者負担となります。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">0</span></button>
                 </div>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-life">生活</span>隣の部屋の騒音が気になります。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 匿名</div>
+                    <span><span class="tag tag-life">生活</span>隣の部屋の騒音が気になります。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
-                    直接注意しに行くとトラブルの原因になります。まずは<strong>アドバイザーまたは管理人に相談</strong>してください。
+                    <div class="user-meta"><span class="user-icon user-role-admin">A</span> UHアドバイザー</div>
+                    直接注意しに行くとトラブルの原因になります。まずはUHアドバイザーまたは管理人に相談してください。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">8</span></button>
                 </div>
             </div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">
-                <span><span class="tag tag-facility">設備</span>インターネットが繋がりません。</span>
+                <div>
+                    <div class="user-meta"><span class="user-icon user-role-student">Q</span> 工学部 2年</div>
+                    <span><span class="tag tag-facility">設備</span>インターネットが繋がりません。</span>
+                </div>
             </div>
             <div class="faq-answer">
                 <div class="faq-answer-content">
+                    <div class="user-meta"><span class="user-icon user-role-student">A</span> 工学部 4年</div>
                     部屋のLANポートとルーターの接続を確認し、ルーターを再起動してください。それでもダメな場合は、掲示板で障害情報が出ていないか確認しましょう。
+                    <br>
+                    <button class="like-btn" onclick="toggleLike(this)">👍 役に立った <span class="like-count">19</span></button>
                 </div>
             </div>
         </div>
@@ -250,6 +342,25 @@
             item.style.display = text.includes(keyword) ? 'block' : 'none';
         });
     });
+
+    // グッドボタン機能（簡易版）
+    function toggleLike(btn) {
+        // イベントのバブリングを防ぐ（アコーディオンが閉じないように）
+        event.stopPropagation();
+        
+        const countSpan = btn.querySelector('.like-count');
+        let count = parseInt(countSpan.innerText);
+        
+        if (btn.classList.contains('liked')) {
+            count--;
+            btn.classList.remove('liked');
+            btn.innerHTML = `👍 役に立った <span class="like-count">${count}</span>`;
+        } else {
+            count++;
+            btn.classList.add('liked');
+            btn.innerHTML = `👍 役に立った <span class="like-count">${count}</span>`;
+        }
+    }
 </script>
 
 </body>
